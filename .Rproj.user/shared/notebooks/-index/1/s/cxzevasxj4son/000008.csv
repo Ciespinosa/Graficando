@@ -1,0 +1,2 @@
+"0","#Segundo gráfico"
+"0","plot(1:100, type=""n"", axes=F, xlab = """", ylab="""", bg=""white"")"

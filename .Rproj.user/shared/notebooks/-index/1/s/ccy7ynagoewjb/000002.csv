@@ -1,0 +1,4 @@
+"0","lin <- matrix(c(rep(1,5), rep(2,5), rep(3,5), rep(4,5), rep(5,5)), 5,5) "
+"0","par(mar=c(1,1,1,1))"
+"0","matplot(lin, type=""l"", lty=1:5, lwd=seq(1,3,length.out = 5),"
+"0","        axes=FALSE, ylab="""")"

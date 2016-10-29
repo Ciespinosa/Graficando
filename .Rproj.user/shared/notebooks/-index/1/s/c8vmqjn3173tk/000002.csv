@@ -1,0 +1,6 @@
+"0","data(cars)"
+"0","par(mar=c(4,3,3,4), mgp=c(1.5,0.4,0), tck=-0.02)"
+"0","plot(cars, xlab=""Velocidad (mph)"", ylab = ""Distancia"", "
+"0","     main=""Relación entre la velocidad de un vehículo"
+"0","     y la distancia de frenado"", cex=0.8, pch=19, cex.main=0.9, "
+"0","     cex.axis=0.7, cex.lab=0.85)"

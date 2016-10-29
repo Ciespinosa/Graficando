@@ -3,13 +3,13 @@ title: "Graficando con R"
 author: "Carlos Iván Espinosa"
 date: "Octubre de 2016"
 output:
-  pdf_document:
-    toc: yes
   html_document:
     fig_caption: yes
     highlight: haddock
     number_sections: yes
     theme: cosmo
+    toc: yes
+  pdf_document:
     toc: yes
 subtitle: El comienzo
 ---
@@ -71,6 +71,7 @@ side = c(1, 2, 3, 4), col = "grey", line = 1, cex = 1.5)
 
 #dev.off()
 ```
+<p><br></p>
 
 He modificado una característica, el fondo del lienzo, lo normal es que el lienzo sea de color blanco y yo le he dicho que sea de color *grey98*. Luego volveremos a este punto.
 
@@ -84,6 +85,7 @@ box(lty = 3)
 mtext(c("side = 1", "side = 2", "side = 3", "side = 4"),
 side = c(1, 2, 3, 4), col = "grey", line = 1, cex = 1.5)
 ```
+<p><br></p>
 
 Podemos comparar con la anterior figura, ahora vemos que los márgenes se han hecho más pequeños. la función `mar` nos permite modificar en orden los lados 1,2,3,4.  Si usted necesita modificar con un valor diferente cada lado puede hacerlo.
 
@@ -110,6 +112,7 @@ box(lty = 3)
 mtext(c("side = 1", "side = 2", "side = 3", "side = 4"),
 side = c(1, 2, 3, 4), col = "grey", line = 1, cex = 1.5)
 ```
+<p><br></p>
 
 La función `mfcol` es muy usada pero uno de los problemas que tiene es que todas las particiones tendrán el mismo tamaño, muchas veces nos interesa que un gráfico sea más grande que otro. Usaremos la función `layout` que nos permite partir el lienzo como queramos. El argumento principal de esta función es una matriz con números enteros que indican el número de partes que queremos obtener.
 
@@ -133,8 +136,9 @@ box(lty = 3)
 
 ```
 
-Si recordamos en lecciones anteriores hemos visto la función matrix, en esta la primera parte es el vector con los números que se escribirán dentro de la matriz (en este caso _c(1,2,3,3)_) y la segunda parte indica las filas y columnas (en este caso 2 filas y 2 columnas). Si quisiésemos que la gráfica grande este en el lado izquierdo el número 1 debería repetirse (_c(1,1,2,3)_). Inténtalo ahora tú.
+<p><br></p>
 
+Si recordamos en lecciones anteriores hemos visto la función matrix, en esta la primera parte es el vector con los números que se escribirán dentro de la matriz (en este caso _c(1,2,3,3)_) y la segunda parte indica las filas y columnas (en este caso 2 filas y 2 columnas). Si quisiésemos que la gráfica grande este en el lado izquierdo el número 1 debería repetirse (_c(1,1,2,3)_). Inténtalo ahora tú.
 
 Pero qué pasa si queremos por ejemplo hacer los gráficos de diferente tamaño.  Podemos utilizar la misma función pero agregamos los argumentos _widths_ y  _heights_, estos argumentos generan cambios relativos entre las partes, si pongo por ejemplo en widths=c(1,3) los anchos de las gráficas será la segunda columna 3 veces la primera, de forma parecida con heights condicionará los altos de las filas.
 
@@ -156,6 +160,8 @@ plot(1:100, type="n", axes=F, xlab = "", ylab="", bg="white")
 rect(-10, -10, 120, 120, col="white")
 box(lty = 3)
 ```
+<p><br></p>
+
 Como vemos en este caso hemos modificado un poco el lienzo, ahora tenemos una fila continua en la parte superior y partida en la parte inferior, para lograr esta partición hemos incluido el argumento _byrow=T_ esto cambia la matriz haciendo que se llene por filas y no por columnas como sucede por defecto. Además hemos incluido el ancho y alto de cada fila y columna. Finalmente, en la función `par` pusimos el argumento _oma_ este argumento permite modificar los márgenes del grupo de gráficas. 
 
 >Recuerden __*mar*__ modifica los márgenes de cada una de las gráficas y __*oma*__ el márgen del grupo de gráficas.
@@ -179,6 +185,7 @@ plot(x,y, pch=1:25, col=1:5, cex=seq(1,3,length.out = 25), bg="yellow",
 text(x,y-0.3, cex=0.8)
 
 ```
+<p><br></p>
 
 Entendamos lo que hemos hecho. Iremos por cada argumento utilizado explicando cual es la función de cada uno de estos. *__pch__*: este argumento nos permite modificar el tipo de símbolo gráfico desplegado, cada número del 1 al 25 corresponde un tipo de símbolo (el símbolo y su número correspondiente se ve en el gráfico anterior). *__col__*: este argumento controla el color que tomará el símbolo, en nuestro ejemplo hemos escogido los números del 1 al 5 que corresponden a los colores; negro, rojo, verde, azul y cyan.  Podemos también describir el color que quiero poniendo el nombre en inglés, ej. "black".  Para ver los colores disponibles digite colors() en la consola y ejecútelo. *__cex__*: este argumento controla el tamaño de los símbolos, por defecto el tamaño es 1, podemos poner valores menores o superiores. En la figura generamos un vector entre 1 y 3 con 25 particiones, para que los símbolos se desplieguen con tamaños crecientes entre 1 y 3. *__bg__*: este argumento controla el fondo de los símbolos 21 a 25, podemos utilizar cualquier color. Más adelante conoceremos el resto de argumentos.
 
@@ -190,7 +197,9 @@ par(mar=c(1,1,1,1))
 matplot(lin, type="l", lty=1:5, lwd=seq(1,3,length.out = 5),
         axes=FALSE, ylab="")
 ```
-En este caso el argumento *__type="l"__*: define el tipo de gráfico en este caso le hemos dicho que se dibuje una línea ("l"), podemos graficar puntos (símbolos) ("p") o ambos "b". *__lwd__*: controla el tipo de línea, continua, entrecortada, puntos, puntos y líneas, etc. *__lwd__*: define el tamaño de la línea, por defecto es 1. Podemos poner un valor para todas o como en el ejemplo un valor para cada línea. 
+<p><br></p>
+
+En este caso el argumento *__type="l"__*: define el tipo de gráfico en este caso le hemos dicho que se dibuje una línea ("l"), podemos graficar puntos (símbolos) ("p") o ambos "b" o podemos graficar líneas verticales a cada dato desde el eje central usando __type="h"__. *__lwd__*: controla el tipo de línea, continua, entrecortada, puntos, puntos y líneas, etc. *__lwd__*: define el tamaño de la línea, por defecto es 1. Podemos poner un valor para todas o como en el ejemplo un valor para cada línea. 
 
 
 ##Anatomía de una gráfica
@@ -216,7 +225,7 @@ mtext("Etiqueta del eje y",side = 1,at = 0.5, font=2, line=-3.5, cex=0.8, col="r
 text(10,80, "Datos", col="red")
 
 ```
-
+<p><br></p>
 
 ###Los ejes
 
@@ -237,9 +246,8 @@ Como nos dimos cuenta hace un momento tener unas etiquetas correctas es fundamen
 El título es una parte importante del gráfico, al igual que las etiquetas debemos intentar que el título sea corto y que rescate lo más importante de la gráfica.  Muchas veces se omite el título del gráfico cuando utilizamos una etiqueta de la figura.  Sin embargo, recuerde que si no tenemos la etiqueta debemos colocar un título. 
 
 
-#Ejercicio 1
+##Ejercicio 1
 
-----------
 
 Bueno vamos a parar un poco y ver lo que otra gente ha hecho con gráficos.  Este ejercicio es sencillo y espero divertido.
 
@@ -249,4 +257,135 @@ Piense en una temática específica que le interese, ahora va a buscar 6 gráfic
 
 #Una gráfica con R
 
+------------
+
+Vamos mostrar algunas de las funcionalidades de R para hacer gráficos y dar formato general. Vamos a trabajar con un gráfico bivariado para lo cual vamos a generar dos series de datos al azar. 
+
+El primer paso hacer el gráfico para esto usamos la función `plot` y agregamos las dos series de datos que queremos graficar.
+
+```{r, fig.cap="Uso de plot, el primer paso", fig.align='center', fig.width=4, fig.height=4}
+
+set.seed(3)
+x <- rnorm(20)
+y <- rnorm(20) 
+
+#Graficamos
+plot(x,y) 
+```
+<p><br></p>
+
+Como vemos el gráfico por defecto no está del todo mal, ha generado unos ejes ajustados a los datos, ha dado unas etiquetas a cada eje y puesto que son datos de dos variables ha elegido puntos para representar los gráficos. Pero podríamos mejorar la presentación de este gráfico.  Por ahora no hemos hablado de los datos (lo más importante), sino que nos centraremos en el formato.
+
+Recuerde que hay algunos principios que deberíamos tenerlos presente. Lo primero es tener un título, y unas etiquetas explicativas para cada eje. Además vamos a cambiar a unos símbolos que llamen más la atención.
+
+```{r, fig.cap="Personalizando el grafico en R (1)", fig.align='center', fig.width=4, fig.height=4}
+plot(x, y, xlab="números al azar", ylab="números al azar", pch=23, col="blue", bg="green", bty="l", tcl=0.4, main="Relación entre números al azar", las=1, 
+     cex=1.3, cex.axis=0.8, cex.lab=0.9)
+```
+<p><br></p>
+
+Parece que ha mejorado, pueden intentar cambiando el símbolo utilizado, seleccionen un símbolo en base de la figura de símbolos. Cambie el color, utilice `colors()` para ver que colores hay disponibles.
+
+Que argumentos hemos utilizado.  Con __xlab__ y __ylab__ podemos indicar a R lo que queremos que se escriba como etiqueta del eje x y el y respectivamente. El argumento __pch__ y __col__ ya los hemos explicado antes es para cambiar el símbolo y el color. El argumento __bty__ permite controlar el tipo de caja del área del gráfico, "l" dibuja el primer eje y el segundo eje, nos da como resultado una L, podría poner "7" y se grafican los ejes 3 y 4, "c" los ejes 1, 2 y 3. El argumento __tcl__ modifica las marcas de graduación del gráfico, por defecto es __-0.5__, nosotros hemos cambiado a __0.4__ y por eso se han dibujado dentro de la caja. El argumento __main__ indica el título. __las__ indica la orientación de los ejes, por defecto es "las=0" que indica que el eje x se escribe horizontalmente y el eje y se escribe verticalmente. Podemos cambiar a "las=1" la opción que elegimos para que el eje "x" y "y" se escriban horizontalmente. Finalmente, "las=2" me permite poner el eje x verticalmente y el eje y horizontalmente. Como vimos antes el argumento __cex__ permite controlar el tamaño en general, en este caso cex solo controla el tamaño del símbolo, "cex.axis" y "cex.lab" controla el tamaño del eje y el tamaño de la etiqueta del eje.  Podemos utilizar "cex.main" para controlar el tamaño del título.
+
+Hemos mejorado pero aún me gustaría modificar algunas otras cosas como el fondo del lienzo, la distancia a la que se escriben el título y las etiquetas de los ejes. Vamos a ver cómo cambiar este formato.
+
+```{r, fig.cap="Personalizando el grafico en R (2)", fig.align='center', fig.width=4, fig.height=4}
+
+par(bg="wheat4", mar=c(2.5, 2.5,3, 0.25))#cambiamos el fondo y los márgenes
+
+plot(x, y, type="n", xlab="", ylab="", xlim=c(-2, 2), 
+     ylim=c(-2, 2), xaxt="n", yaxt="n") #ejecutamos el plot con type="n",
+                                        #se desplega unicamente la caja (box)
+rect(-3, -3, 3, 3, col="wheat") #una caja con de otro color
+points(x, y, pch=19, col=rgb(1,0,0,0.6), cex=1.5) #agregamos los puntos
+axis(side=1, c(-2,-1,0,1,2), tcl=-0.4, 
+     labels=FALSE, col="white", lwd=2) #agregamos el primer eje, de color blanco
+axis(side=2, -2:2, tcl=-0.4, labels=FALSE, col="white", lwd=2) 
+title("Relación entre números al azar", font.main=4, adj=1, 
+      cex.main=1.2, line=1.8, col.main="darkred") #Agregamos el título
+mtext("números al azar", side=1, line=1, at=1.5, 
+      cex=0.9, font=3, col="white")#Agregamos etiqueta del eje 1
+mtext("números al azar", line=0.5, at=-1.8, 
+      cex=0.9, font=3, col="white")#Agregamos etiqueta del eje 2 
+mtext(-2:2, side=1, las=1, at=-2:2, line=0.3, 
+      col="white", cex=0.9, font=2) #Incluimos las leyendas del eje 1
+mtext(-2:2, side=2, las=1, at=-2:2, line=0.5,
+      col="white", cex=0.9, font=2) #Incluimos las leyendas del eje 2
+
+```
+<p><br></p>
+
+Intentaré explicar rápidamente lo que hemos hecho. 
+- Lo primero es que graficamos con argumentos de tipo (type) y ejes (xaxt, yaxt) nulo ("n"), por lo que no se dibujan ni ejes ni puntos. Además, las etiquetas de los ejes sin datos (xlab="", ylab="") por lo que R no escribe etiquetas.
+
+- Con la función `rect` graficamos un cuadrado mayor al límite del gráfico de -3 a 3 y le ponemos un color distinto al fondo.
+
+- Con la función `points` agregamos los datos con unos símbolos determinados y les ponemos un color. Usamos la función `rgb` que nos permite dar un color y hacerlo semitransparente.
+
+- Con la función `axis` incluimos el eje 1 y 2 (side=1 o 2), le damos un vector que usará para poner las marcas, el tamaño de las marcas lo controlamos con tcl (tcl=-0.4). Le damos color (col), le decimos que no incluya las leyendas (labels=FALSE) y controlamos el ancho de la línea del eje (lwd=2).
+
+- Con la función `title` podemos incluir el título y controlar algunos parámetros. El argumento "font.main" permite modificar el texto con cursivas y negritas como en el gráfico (font.main=4), cursivas (font.main=2), negritas (font.main=2)  o sin cursivas y sin negritas (font.main=4). El argumento adj=1 justifica el texto a la derecha, podemos cambiarlo al centro con adj=0.5, o a la izquierda con adj=0. El argumento line=1.8 permite alejar o acercar el título del gráfico.
+
+
+Me parece que quedo muy bien el gráfico que opinan ustedes?.  Lo podrían hacer mejor, estoy seguro de que si, inténtalo. 
+
+##Ejercicio 2
+
+Modifica los argumentos de esta gráfica, cambia los colores los símbolos y todo lo que quieras. Intenta hacer un gráfico que se acople a lo que necesitas y te gusta.
+
+
 #Gráficos de una variable
+
+Bueno creo que hemos logrado hacer cosas interesantes pero solo hemos jugado, como les decía lo más importante en un gráfico son los datos.  Hasta ahora no nos habíamos preocupado de ello, pero es hora de hacerlo.
+
+```{r}
+library(readxl)
+ame <- read_excel("AMEBIASIS_LOJA.xlsx",sheet = 1, na = "NA")#cargamos los datos
+pr.edad <- tapply(ame$`Edad en años`, ame$Parroquia, mean)
+                                      # obtenemos la media de edad por parroquia 
+```
+
+Una vez que tenemos los datos de la media de edad con amebiasis es posible que nos interese ver los datos en una gráfica.
+
+```{r , fig.cap="Ejemplo de gráfico con una sola variable", fig.align='center', fig.width=4, fig.height=4}
+plot(pr.edad, ylab="Edad Promedio", xaxt="n", xlab="", pch=19)
+```
+<p><br></p>
+
+Le hemos pedido que no grafique el eje x, ya que realmente el eje x no es ninguna variable, lo que estamos graficando es una sola variable, por lo que lo lógico es que este eje no se grafique. Esta gráfica nos permite ver la dispersión de los datos, ya podemos ver que la edad más recurrente en la que se enferman de amebiasis es entre 20 y 30 años. Sin embargo, una gráfica mejor para resumir una sola variable cuantitativa como la media de edad sería un diagrama de caja, también conocido como diagrama de caja y bigote, o boxplot en inglés. 
+
+
+```{r, fig.cap="Ejemplo de boxplot con una sola variable (1)", fig.align='center', fig.width=4, fig.height=4}
+boxplot(pr.edad)
+```
+<p><br></p>
+
+Ahora es mucho más claro que la mediana de nuestros datos están en torno a los 30 años. Además vemos que algunas parroquias muestran valores raros superiores a los 50 años. Una buena forma de presentar esta información es mezclar este boxplot con los datos brutos.  Veamos lo que podemos hacer.
+
+```{r, fig.cap="Ejemplo de boxplot con una sola variable (1)", fig.align='center', fig.width=4, fig.height=4}
+boxplot(pr.edad)
+stripchart(pr.edad, method = "jitter", jitter = 0.1, add =
+TRUE, vertical = TRUE, pch=19)
+```
+<p><br></p>
+
+Bueno que les parece, ¿bonito no?  Aunque hay muchos elementos que incluir aún para que esto pueda llamarse gráfico de verdad.
+
+Otra interesante opción es realizar un histograma con esta variable. El histograma nos muestra la frecuencia de los datos a lo largo de rangos equitativos de la variable.  Al igual que el boxplot nos ayuda ver la distribución de los datos.   
+
+```{r, fig.cap="Ejemplo de histograma", fig.align='center', fig.width=4, fig.height=4}
+
+hist(pr.edad)
+
+```
+<p><br></p>
+
+
+
+##Ejercicio 3
+
+Nos interesa describir la distribución de edad de las personas que han padecido Amebiasis. 
+
+Incluya los elementos que considere necesarios y póngale el formato de color y ejes que le parezca al boxplot y al histograma del promedio de edad por parroquia de las personas con amebiasis. Debe partir el lienzo en dos partes, podrían ser desiguales para poner en el mismo lienzo las dos gráficas. Espero tener un gráfico para enmarcar, seguro lo podrá hacer.
+
