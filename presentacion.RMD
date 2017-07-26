@@ -1,0 +1,54 @@
+---
+title: "Graficos"
+author: "Carlos Iván Espinosa"
+date: "26 de julio de 2017"
+output: slidy_presentation
+incremental: TRUE
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Los principios de una gráfica
+
+- Captar la atención del lector. Este posiblemente es uno de los retos más grandes cuando estamos haciendo una gráfica, queremos que esta llame la atención y el lector se interese por la misma.
+
+- El gráfico debe presentar la información de la forma más sencilla, clara y precisa. Por lo tanto debemos asegurarnos que no tenemos información de más, si existe algo que borrando no le resta al entendimiento del gráfico bórrelo. 
+
+- No inducir al error. Esta es una regla que muchos autores coinciden, los gráficos tienen el fin de presentar información, por tanto deben mostrar lo que esa información dice. 
+
+- Los gráficos deben permitir al lector la comparación de datos, mostrar tendencias o diferencias entre las variables.
+
+
+## El lienzo donde graficar
+
+```{r, fig.cap="Lienzo con características por defecto", fig.align='center', fig.height=3, fig.width=4}
+par(bg="grey98")
+plot(1:100, type="n", axes=F, xlab = "", ylab="", bg="white")
+rect(-10, -10, 120, 120, col="white")
+box(lty = 3)
+mtext(c("side = 1", "side = 2", "side = 3", "side = 4"),
+side = c(1, 2, 3, 4), col = "grey", line = 1, cex = 1.5)
+
+#dev.off()
+```
+## Modificando el Lienzo
+
+```{r cars, echo = TRUE}
+```{r, fig.cap="Reduciendo los márgenes del lienzo", fig.align='center', fig.height=3, fig.width=4}
+par(bg="grey98", mar=c(3,3,3,3))
+plot(1:100, type="n", axes=F, xlab = "", ylab="", bg="white")
+rect(-10, -10, 120, 120, col="white")
+box(lty = 3)
+mtext(c("side = 1", "side = 2", "side = 3", "side = 4"),
+side = c(1, 2, 3, 4), col = "grey", line = 1, cex = 1.5)
+```
+```
+
+## Slide with Plot
+
+```{r pressure}
+plot(pressure)
+```
+

@@ -1,28 +1,27 @@
 ---
-title: "Graficando con R"
+title: "Graficando con R. El inicio"
 author: "Carlos Iván Espinosa"
 date: "Octubre de 2016"
 output:
+  pdf_document:
+    toc: yes
   html_document:
     fig_caption: yes
     highlight: haddock
     number_sections: yes
     theme: cosmo
     toc: yes
-  pdf_document:
-    toc: yes
-subtitle: El comienzo
 ---
 
 #Introducción
 
 ----------
 
-La representación gráfica de los datos es una actividad bastante común en todas partes vemos graficos representando información de todo tipo, los vemos en textos científicos, divulgativos o en informes de organismos públicos o privados.  Sin embargo, estos no siempre cumplen con los estándares de una buena gráfica. 
+La representación gráfica de los datos es una actividad bastante común, en todas partes vemos gráficos representando información de todo tipo, los vemos en textos científicos, divulgativos o en informes de organismos públicos o privados.  Sin embargo, estos no siempre cumplen con los estándares de una buena gráfica. 
 
 El hacer una buena gráfica no es cuestión sencilla y requiere un gran trabajo de abstracción.  En esta lección intentaremos dar algunas pautas para poder desarrollar gráficas claras y esperamos que bonitas. Claro como siempre trabajaremos con R.
 
-Pero antes de iniciar con R, es necesario aclaremos algunas cosas importantes. Intentaremos definir algunos principios básicos importantes que deben ser tomados en cuenta para realizar una buena gráfica, pasaremos luego a entender la anatomía de una gráfica, con estos insumos si pasaremos a conocer lo que nos ofrece R para hacer gráficas.
+Pero antes de iniciar con R, es necesario aclaremos algunas cosas importantes. Intentaremos definir algunos principios básicos e importantes que deben ser tomados en cuenta para realizar una buena gráfica, pasaremos luego a entender la anatomía de una gráfica. Con estos insumos si pasaremos a conocer lo que nos ofrece R para hacer gráficas.
 
 ##La visualización de datos
 
@@ -34,7 +33,7 @@ Existen muchos principios para realizar una buena gráfica, intentaremos resumir
 
 - El gráfico debe presentar la información de la forma más sencilla, clara y precisa. Por lo tanto debemos asegurarnos que no tenemos información de más, si existe algo que borrando no le resta al entendimiento del gráfico bórrelo. 
 
-- No inducir al error. Esta es una regla que muchos autores coinciden, los gráficos tienen el fin de presentar información por tanto deben mostrar lo que esa información dice. 
+- No inducir al error. Esta es una regla que muchos autores coinciden, los gráficos tienen el fin de presentar información, por tanto deben mostrar lo que esa información dice. 
 
 - Los gráficos deben permitir al lector la comparación de datos, mostrar tendencias o diferencias entre las variables.
 
@@ -46,7 +45,7 @@ Muchas otras reglas han sido discutidas mucho más de lo que uno realmente piens
 
 Una de las mayores fortalezas de R es la versatilidad para generar gráficos de alta calidad, existen muchos paquetes que permiten hacer gráficos de diferentes características como `ggplot` o `lattice`, sin embargo, ahora nos centraremos en el sistema base.
 
-Antes de empezar, para se hagan una idea de algunas de las cosas que podemos hacer con R, permitamos a R que nos dé una muestra de los gráficos que se pueden hacer. 
+Antes de empezar, para que se hagan una idea de algunas de las cosas que podemos hacer con R, permitamos a R que nos dé una muestra de los gráficos que se pueden hacer. 
 
 ```{r, eval=FALSE}
 demo(graphics) # Ejecútela usted
@@ -170,7 +169,7 @@ Modifica los márgenes del grupo de gráficas para que comprendas mejor lo que p
 
 ##Parámetros gráficos
 
-Aunque no lo sabían, ya hemos utilizado algunos parámetros gráficos que los hemos manipulado en la función `par`, usamos _mar_ para cambiar márgenes de las gráficas, _oma_ para el conjunto de gráficas, pero además, _bg_ para poner un color al fondo de la gráfica, y _mfcol_ para dividir el lienzo en varias partes iguales.
+Aunque no lo sabían, ya hemos utilizado algunos parámetros gráficos en la función `par`, estos nos han servido para manipular e lienzo. Usamos _mar_ para cambiar márgenes de las gráficas, _oma_ para el conjunto de gráficas, pero además, _bg_ para poner un color al fondo de la gráfica, y _mfcol_ para dividir el lienzo en varias partes iguales.
 
 Vamos a ver unos pocos parámetros más que nos permiten modificar por ejemplo el tipo de símbolos que graficamos o las líneas, además de los tamaños de estas dos.
 
@@ -187,7 +186,7 @@ text(x,y-0.3, cex=0.8)
 ```
 <p><br></p>
 
-Entendamos lo que hemos hecho. Iremos por cada argumento utilizado explicando cual es la función de cada uno de estos. *__pch__*: este argumento nos permite modificar el tipo de símbolo gráfico desplegado, cada número del 1 al 25 corresponde un tipo de símbolo (el símbolo y su número correspondiente se ve en el gráfico anterior). *__col__*: este argumento controla el color que tomará el símbolo, en nuestro ejemplo hemos escogido los números del 1 al 5 que corresponden a los colores; negro, rojo, verde, azul y cyan.  Podemos también describir el color que quiero poniendo el nombre en inglés, ej. "black".  Para ver los colores disponibles digite colors() en la consola y ejecútelo. *__cex__*: este argumento controla el tamaño de los símbolos, por defecto el tamaño es 1, podemos poner valores menores o superiores. En la figura generamos un vector entre 1 y 3 con 25 particiones, para que los símbolos se desplieguen con tamaños crecientes entre 1 y 3. *__bg__*: este argumento controla el fondo de los símbolos 21 a 25, podemos utilizar cualquier color. Más adelante conoceremos el resto de argumentos.
+Entendamos lo que hemos hecho. Iremos por cada argumento utilizado, explicando cual es la función de cada uno de estos. *__pch__*: este argumento nos permite modificar el tipo de símbolo gráfico desplegado, cada número del 1 al 25 corresponde un tipo de símbolo (el símbolo y su número correspondiente se ve en el gráfico anterior). *__col__*: este argumento controla el color que tomará el símbolo, en nuestro ejemplo hemos escogido los números del 1 al 5 que corresponden a los colores; negro, rojo, verde, azul y cyan.  Podemos también describir el color que quiero poniendo el nombre en inglés, ej. "black".  Para ver los colores disponibles digite colors() en la consola y ejecútelo. *__cex__*: este argumento controla el tamaño de los símbolos, por defecto el tamaño es 1, podemos poner valores menores o superiores. En la figura generamos un vector entre 1 y 3 con 25 particiones, para que los símbolos se desplieguen con tamaños crecientes entre 1 y 3. *__bg__*: este argumento controla el fondo de los símbolos 21 a 25, podemos utilizar cualquier color. Más adelante conoceremos el resto de argumentos.
 
 También podemos dar formato a las líneas, modificando el tipo de línea y su tamaño. Veamos cómo podemos hacer esto.
 
@@ -210,6 +209,8 @@ Utilizaremos datos de R para hacer una gráfica y ver sus partes.
 
 ```{r, fig.cap="Anatomía de un gráfico", fig.align='center', fig.height=4, fig.width=5}
 data(cars)
+tiff(filename = "antomia.tiff", width = 1600, height = 1300, 
+     pointsize = 13, units = "px", res = 300)
 par(mar=c(4,3,3,4), mgp=c(1.5,0.4,0), tck=-0.02)
 
 plot(cars, xlab="Velocidad (mph)", ylab = "Distancia", 
@@ -223,7 +224,7 @@ mtext("Etiqueta del eje x",side = 1,at = 25, font=2, line=1.5, cex=0.8, col="red
 mtext("Eje y",side = 1,at = 2, font=2, line=0.3, cex=0.8, col="blue", las=2)
 mtext("Etiqueta del eje y",side = 1,at = 0.5, font=2, line=-3.5, cex=0.8, col="red", las=2)
 text(10,80, "Datos", col="red")
-
+dev.off()
 ```
 <p><br></p>
 
@@ -232,7 +233,7 @@ text(10,80, "Datos", col="red")
 Los ejes definen el espacio o rango de una gráfica y lo más común es que una gráfica
 tenga dos ejes, los cuales denominamos X e Y. El eje X se ubica por convenio en la horizontal. En el eje x ponemos las variables independientes o explicativas, mientras que en el eje y colocamos las variables de respuesta.  En el caso del gráfico anterior la velocidad de frenado influye en la distancia de frenado de los vehículos.
 
-Cada eje nos permite ver la variación de nuestros datos, vemos que la velocidad de los vehículos varía entre 3 y 25 mph (parece raro no!, los datos son de 1920), y la distancia de frenado esta entre 0 y 120 ...., _se dieron cuenta_ hemos encontrado un error en la etiqueta del gráfico, no sabemos la distancia en que esta medido.  Bueno se los cuento la distancia esta medida en pies. Como podemos ver en el gráfico R por defecto ajusta los ejes a los datos, siempre es bueno no tener espacio en blanco, sin embargo, usted podría querer marcar un límite de los ejes para hacer esto podemos utilizar el argumento __xlim__ o __ylim__ para modificar el eje x o y respectivamente.  Si quisiéramos incrementar el eje y hasta 150 podriamos utilizar el argumento de la siguiente forma: __ylim=c(0,150)__.
+Cada eje nos permite ver la variación de nuestros datos, vemos que la velocidad de los vehículos varía entre 3 y 25 mph (parece raro no!, los datos son de 1920), y la distancia de frenado esta entre 0 y 120 ...., _se dieron cuenta_ hemos encontrado un error en la etiqueta del gráfico, no sabemos la distancia en que esta medido.  Bueno se los cuento la distancia esta medida en pies. Como podemos ver en el gráfico R por defecto ajusta los ejes a los datos, siempre es bueno no tener espacio en blanco, sin embargo, usted podría querer marcar un límite de los ejes para hacer esto podemos utilizar el argumento __xlim__ o __ylim__ para modificar el eje x o y respectivamente.  Si quisiéramos incrementar el eje "Y" hasta 150 podríamos utilizar el argumento de la siguiente forma: __ylim=c(0,150)__.
 
 ###Las etiquetas de los ejes
 

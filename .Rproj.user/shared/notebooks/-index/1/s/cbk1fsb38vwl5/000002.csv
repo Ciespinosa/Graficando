@@ -1,4 +1,0 @@
-"0","layout(matrix(c(1,2,3,3), 2, 2))"
-"0","par(mar=c(1,1,1,1), bg=""grey98"")"
-"0","#Primer gráfico"
-"0","plot(1:100, type=""n"", axes=F, xlab = """", ylab="""", bg=""white"")"
