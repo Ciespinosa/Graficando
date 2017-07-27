@@ -47,7 +47,8 @@ Una de las mayores fortalezas de R es la versatilidad para generar gráficos de 
 
 Antes de empezar, para que se hagan una idea de algunas de las cosas que podemos hacer con R, permitamos a R que nos dé una muestra de los gráficos que se pueden hacer. 
 
-```{r, eval=FALSE}
+
+```r
 demo(graphics) # Ejecútela usted
 ```
 Sorprendid@, bueno eso no es nada hay muchas cosas que se pueden hacer con gráficos en R.
@@ -60,14 +61,26 @@ Cuando yo ejecuto un gráfico, por ejemplo con la función `plot`, la _ventana_ 
 
 La ventana tiene por defecto algunas características que pueden ser modificadas con la función `par`. Veamos la ventana que sale por defecto.
 
-```{r, fig.cap="Lienzo con características por defecto", fig.align='center', fig.height=3, fig.width=4}
+
+```r
 par(bg="grey98")
 plot(1:100, type="n", axes=F, xlab = "", ylab="", bg="white")
 rect(-10, -10, 120, 120, col="white")
 box(lty = 3)
 mtext(c("side = 1", "side = 2", "side = 3", "side = 4"),
 side = c(1, 2, 3, 4), col = "grey", line = 1, cex = 1.5)
+```
 
+\begin{figure}
+
+{\centering \includegraphics{index_files/figure-latex/unnamed-chunk-2-1} 
+
+}
+
+\caption{Lienzo con características por defecto}\label{fig:unnamed-chunk-2}
+\end{figure}
+
+```r
 #dev.off()
 ```
 <p><br></p>
@@ -76,7 +89,8 @@ He modificado una característica, el fondo del lienzo, lo normal es que el lien
 
 Como se ve en el gráfico inicialmente podemos ver dos partes distintas, la región del plot (el cuadrado en blanco), es la zona donde se dibujaran los datos. El área en gris son los márgenes de cada uno de los lados (side).  Cada lado siempre mantendrá ese orden, el lado uno es el inferior, el dos el izquierdo, el tres el superior y el cuatro el derecho.  Todos las características de este lienzo pueden ser controladas desde la función `par`. Por ejemplo, los márgenes pueden ser modificados utilizando la función `mar` dentro de `par`.  Modifiquemos los márgenes.
 
-```{r, fig.cap="Reduciendo los márgenes del lienzo", fig.align='center', fig.height=3, fig.width=4}
+
+```r
 par(bg="grey98", mar=c(3,3,3,3))
 plot(1:100, type="n", axes=F, xlab = "", ylab="", bg="white")
 rect(-10, -10, 120, 120, col="white")
@@ -84,6 +98,15 @@ box(lty = 3)
 mtext(c("side = 1", "side = 2", "side = 3", "side = 4"),
 side = c(1, 2, 3, 4), col = "grey", line = 1, cex = 1.5)
 ```
+
+\begin{figure}
+
+{\centering \includegraphics{index_files/figure-latex/unnamed-chunk-3-1} 
+
+}
+
+\caption{Reduciendo los márgenes del lienzo}\label{fig:unnamed-chunk-3}
+\end{figure}
 <p><br></p>
 
 Podemos comparar con la anterior figura, ahora vemos que los márgenes se han hecho más pequeños. la función `mar` nos permite modificar en orden los lados 1,2,3,4.  Si usted necesita modificar con un valor diferente cada lado puede hacerlo.
@@ -96,7 +119,8 @@ Ahora otra de las cosas que puede ser importante es poder poner en un mismo lien
 
 La función `mfcol` me permite generar un lienzo con varias partes iguales, puedo decir cuántas filas y cuantas columnas.  Si quiero dos gráficos uno debajo de otro lo que debo hacer es `mfcol=c(2,1)` se especifica primero las filas y luego las columnas.  Si quiero en cambio un grafico a un lado de otro entonces debo poner `mfcol=c(1,2)`.
 
-```{r, fig.cap="Lienzo con dos gráficos de igual tamaño", fig.align='center', fig.height=3, fig.width=6}
+
+```r
 par(bg="grey98", mar=c(3,3,3,3), mfcol=c(1,2))
 #Primer gráfico
 plot(1:100, type="n", axes=F, xlab = "", ylab="", bg="white")
@@ -111,12 +135,21 @@ box(lty = 3)
 mtext(c("side = 1", "side = 2", "side = 3", "side = 4"),
 side = c(1, 2, 3, 4), col = "grey", line = 1, cex = 1.5)
 ```
+
+\begin{figure}
+
+{\centering \includegraphics{index_files/figure-latex/unnamed-chunk-4-1} 
+
+}
+
+\caption{Lienzo con dos gráficos de igual tamaño}\label{fig:unnamed-chunk-4}
+\end{figure}
 <p><br></p>
 
 La función `mfcol` es muy usada pero uno de los problemas que tiene es que todas las particiones tendrán el mismo tamaño, muchas veces nos interesa que un gráfico sea más grande que otro. Usaremos la función `layout` que nos permite partir el lienzo como queramos. El argumento principal de esta función es una matriz con números enteros que indican el número de partes que queremos obtener.
 
-```{r, fig.cap="Lienzo con dos gráficos de tamaño variable",  fig.align='center', fig.height=3, fig.width=6}
 
+```r
 layout(matrix(c(1,2,3,3), 2, 2))
 par(mar=c(1,1,1,1), bg="grey98")
 
@@ -132,8 +165,16 @@ box(lty = 3)
 plot(1:100, type="n", axes=F, xlab = "", ylab="", bg="white")
 rect(-10, -10, 120, 120, col="white")
 box(lty = 3)
-
 ```
+
+\begin{figure}
+
+{\centering \includegraphics{index_files/figure-latex/unnamed-chunk-5-1} 
+
+}
+
+\caption{Lienzo con dos gráficos de tamaño variable}\label{fig:unnamed-chunk-5}
+\end{figure}
 
 <p><br></p>
 
@@ -141,7 +182,8 @@ Si recordamos en lecciones anteriores hemos visto la función matrix, en esta la
 
 Pero qué pasa si queremos por ejemplo hacer los gráficos de diferente tamaño.  Podemos utilizar la misma función pero agregamos los argumentos _widths_ y  _heights_, estos argumentos generan cambios relativos entre las partes, si pongo por ejemplo en widths=c(1,3) los anchos de las gráficas será la segunda columna 3 veces la primera, de forma parecida con heights condicionará los altos de las filas.
 
-```{r, fig.cap="Lienzo con dos gráficos de tamaño variable 2", fig.align='center', fig.height=3.5, fig.width=6}
+
+```r
 layout(matrix(c(1,1,2,3), 2, 2, byrow = TRUE), 
        widths = c(2,3), heights = c(1.5,3))
 par(mar=c(1,1,1,1), oma=c(3,3,1,1), bg="grey98")
@@ -159,6 +201,15 @@ plot(1:100, type="n", axes=F, xlab = "", ylab="", bg="white")
 rect(-10, -10, 120, 120, col="white")
 box(lty = 3)
 ```
+
+\begin{figure}
+
+{\centering \includegraphics{index_files/figure-latex/unnamed-chunk-6-1} 
+
+}
+
+\caption{Lienzo con dos gráficos de tamaño variable 2}\label{fig:unnamed-chunk-6}
+\end{figure}
 <p><br></p>
 
 Como vemos en este caso hemos modificado un poco el lienzo, ahora tenemos una fila continua en la parte superior y partida en la parte inferior, para lograr esta partición hemos incluido el argumento _byrow=T_ esto cambia la matriz haciendo que se llene por filas y no por columnas como sucede por defecto. Además hemos incluido el ancho y alto de cada fila y columna. Finalmente, en la función `par` pusimos el argumento _oma_ este argumento permite modificar los márgenes del grupo de gráficas. 
@@ -175,27 +226,46 @@ Vamos a ver unos pocos parámetros más que nos permiten modificar por ejemplo e
 
 Cuando realizamos un plot según sean nuestros datos, éstos serán graficados como puntos o como líneas.  Podemos darle una forma, un tamaño y color a estos puntos. 
 
-```{r, fig.cap="Tipos de símbolos gráficos desplegados", fig.align='center', fig.height=4, fig.width=4}
+
+```r
 x <- rep(1:5, 5)
 y <- sort(rep(1:5, 5))
 par(mar=c(1,1,1,1))
 plot(x,y, pch=1:25, col=1:5, cex=seq(1,3,length.out = 25), bg="yellow",
      axes=FALSE, xlab="", ylab="", ylim=c(0,6))
 text(x,y-0.3, cex=0.8)
-
 ```
+
+\begin{figure}
+
+{\centering \includegraphics{index_files/figure-latex/unnamed-chunk-7-1} 
+
+}
+
+\caption{Tipos de símbolos gráficos desplegados}\label{fig:unnamed-chunk-7}
+\end{figure}
 <p><br></p>
 
 Entendamos lo que hemos hecho. Iremos por cada argumento utilizado, explicando cual es la función de cada uno de estos. *__pch__*: este argumento nos permite modificar el tipo de símbolo gráfico desplegado, cada número del 1 al 25 corresponde un tipo de símbolo (el símbolo y su número correspondiente se ve en el gráfico anterior). *__col__*: este argumento controla el color que tomará el símbolo, en nuestro ejemplo hemos escogido los números del 1 al 5 que corresponden a los colores; negro, rojo, verde, azul y cyan.  Podemos también describir el color que quiero poniendo el nombre en inglés, ej. "black".  Para ver los colores disponibles digite colors() en la consola y ejecútelo. *__cex__*: este argumento controla el tamaño de los símbolos, por defecto el tamaño es 1, podemos poner valores menores o superiores. En la figura generamos un vector entre 1 y 3 con 25 particiones, para que los símbolos se desplieguen con tamaños crecientes entre 1 y 3. *__bg__*: este argumento controla el fondo de los símbolos 21 a 25, podemos utilizar cualquier color. Más adelante conoceremos el resto de argumentos.
 
 También podemos dar formato a las líneas, modificando el tipo de línea y su tamaño. Veamos cómo podemos hacer esto.
 
-```{r, fig.cap="Tipos de líneas desplegadas en gráficos", fig.align='center', fig.height=3, fig.width=4}
+
+```r
 lin <- matrix(c(rep(1,5), rep(2,5), rep(3,5), rep(4,5), rep(5,5)), 5,5) 
 par(mar=c(1,1,1,1))
 matplot(lin, type="l", lty=1:5, lwd=seq(1,3,length.out = 5),
         axes=FALSE, ylab="")
 ```
+
+\begin{figure}
+
+{\centering \includegraphics{index_files/figure-latex/unnamed-chunk-8-1} 
+
+}
+
+\caption{Tipos de líneas desplegadas en gráficos}\label{fig:unnamed-chunk-8}
+\end{figure}
 <p><br></p>
 
 En este caso el argumento *__type="l"__*: define el tipo de gráfico en este caso le hemos dicho que se dibuje una línea ("l"), podemos graficar puntos (símbolos) ("p") o ambos "b" o podemos graficar líneas verticales a cada dato desde el eje central usando __type="h"__. *__lwd__*: controla el tipo de línea, continua, entrecortada, puntos, puntos y líneas, etc. *__lwd__*: define el tamaño de la línea, por defecto es 1. Podemos poner un valor para todas o como en el ejemplo un valor para cada línea. 
@@ -207,7 +277,8 @@ Como hemos visto R es muy versátil y podemos hacer una gráfica combinada que n
 
 Utilizaremos datos de R para hacer una gráfica y ver sus partes.
 
-```{r, fig.cap="Anatomía de un gráfico", fig.align='center', fig.height=4, fig.width=5}
+
+```r
 data(cars)
 par(mar=c(4,3,3,4), mgp=c(1.5,0.4,0), tck=-0.02)
 
@@ -222,8 +293,16 @@ mtext("Etiqueta del eje x",side = 1,at = 25, font=2, line=1.5, cex=0.8, col="red
 mtext("Eje y",side = 1,at = 2, font=2, line=0.3, cex=0.8, col="blue", las=2)
 mtext("Etiqueta del eje y",side = 1,at = 0.5, font=2, line=-3.5, cex=0.8, col="red", las=2)
 text(10,80, "Datos", col="red")
-
 ```
+
+\begin{figure}
+
+{\centering \includegraphics{index_files/figure-latex/unnamed-chunk-9-1} 
+
+}
+
+\caption{Anatomía de un gráfico}\label{fig:unnamed-chunk-9}
+\end{figure}
 <p><br></p>
 
 ###Los ejes
@@ -262,8 +341,8 @@ Vamos mostrar algunas de las funcionalidades de R para hacer gráficos y dar for
 
 El primer paso hacer el gráfico para esto usamos la función `plot` y agregamos las dos series de datos que queremos graficar.
 
-```{r, fig.cap="Uso de plot, el primer paso", fig.align='center', fig.width=4, fig.height=4}
 
+```r
 set.seed(3)
 x <- rnorm(20)
 y <- rnorm(20) 
@@ -271,16 +350,35 @@ y <- rnorm(20)
 #Graficamos
 plot(x,y) 
 ```
+
+\begin{figure}
+
+{\centering \includegraphics{index_files/figure-latex/unnamed-chunk-10-1} 
+
+}
+
+\caption{Uso de plot, el primer paso}\label{fig:unnamed-chunk-10}
+\end{figure}
 <p><br></p>
 
 Como vemos el gráfico por defecto no está del todo mal, ha generado unos ejes ajustados a los datos, ha dado unas etiquetas a cada eje y puesto que son datos de dos variables ha elegido puntos para representar los gráficos. Pero podríamos mejorar la presentación de este gráfico.  Por ahora no hemos hablado de los datos (lo más importante), sino que nos centraremos en el formato.
 
 Recuerde que hay algunos principios que deberíamos tenerlos presente. Lo primero es tener un título, y unas etiquetas explicativas para cada eje. Además vamos a cambiar a unos símbolos que llamen más la atención.
 
-```{r, fig.cap="Personalizando el grafico en R (1)", fig.align='center', fig.width=4, fig.height=4}
+
+```r
 plot(x, y, xlab="números al azar", ylab="números al azar", pch=23, col="blue", bg="green", bty="l", tcl=0.4, main="Relación entre números al azar", las=1, 
      cex=1.3, cex.axis=0.8, cex.lab=0.9)
 ```
+
+\begin{figure}
+
+{\centering \includegraphics{index_files/figure-latex/unnamed-chunk-11-1} 
+
+}
+
+\caption{Personalizando el grafico en R (1)}\label{fig:unnamed-chunk-11}
+\end{figure}
 <p><br></p>
 
 Parece que ha mejorado, pueden intentar cambiando el símbolo utilizado, seleccionen un símbolo en base de la figura de símbolos. Cambie el color, utilice `colors()` para ver que colores hay disponibles.
@@ -289,8 +387,8 @@ Que argumentos hemos utilizado.  Con __xlab__ y __ylab__ podemos indicar a R lo 
 
 Hemos mejorado pero aún me gustaría modificar algunas otras cosas como el fondo del lienzo, la distancia a la que se escriben el título y las etiquetas de los ejes. Vamos a ver cómo cambiar este formato.
 
-```{r, fig.cap="Personalizando el grafico en R (2)", fig.align='center', fig.width=4, fig.height=4}
 
+```r
 par(bg="wheat4", mar=c(2.5, 2.5,3, 0.25))#cambiamos el fondo y los márgenes
 
 plot(x, y, type="n", xlab="", ylab="", xlim=c(-2, 2), 
@@ -311,8 +409,16 @@ mtext(-2:2, side=1, las=1, at=-2:2, line=0.3,
       col="white", cex=0.9, font=2) #Incluimos las leyendas del eje 1
 mtext(-2:2, side=2, las=1, at=-2:2, line=0.5,
       col="white", cex=0.9, font=2) #Incluimos las leyendas del eje 2
-
 ```
+
+\begin{figure}
+
+{\centering \includegraphics{index_files/figure-latex/unnamed-chunk-12-1} 
+
+}
+
+\caption{Personalizando el grafico en R (2)}\label{fig:unnamed-chunk-12}
+\end{figure}
 <p><br></p>
 
 Intentaré explicar rápidamente lo que hemos hecho. 
@@ -338,7 +444,8 @@ Modifica los argumentos de esta gráfica, cambia los colores los símbolos y tod
 
 Bueno creo que hemos logrado hacer cosas interesantes pero solo hemos jugado, como les decía lo más importante en un gráfico son los datos.  Hasta ahora no nos habíamos preocupado de ello, pero es hora de hacerlo.
 
-```{r}
+
+```r
 library(readxl)
 ame <- read_excel("AMEBIASIS_LOJA.xlsx",sheet = 1, na = "NA")#cargamos los datos
 pr.edad <- tapply(ame$`Edad en años`, ame$Parroquia, mean)
@@ -347,37 +454,75 @@ pr.edad <- tapply(ame$`Edad en años`, ame$Parroquia, mean)
 
 Una vez que tenemos los datos de la media de edad con amebiasis es posible que nos interese ver los datos en una gráfica.
 
-```{r , fig.cap="Ejemplo de gráfico con una sola variable", fig.align='center', fig.width=4, fig.height=4}
+
+```r
 plot(pr.edad, ylab="Edad Promedio", xaxt="n", xlab="", pch=19)
 ```
+
+\begin{figure}
+
+{\centering \includegraphics{index_files/figure-latex/unnamed-chunk-14-1} 
+
+}
+
+\caption{Ejemplo de gráfico con una sola variable}\label{fig:unnamed-chunk-14}
+\end{figure}
 <p><br></p>
 
 Le hemos pedido que no grafique el eje x, ya que realmente el eje x no es ninguna variable, lo que estamos graficando es una sola variable, por lo que lo lógico es que este eje no se grafique. Esta gráfica nos permite ver la dispersión de los datos, ya podemos ver que la edad más recurrente en la que se enferman de amebiasis es entre 20 y 30 años. Sin embargo, una gráfica mejor para resumir una sola variable cuantitativa como la media de edad sería un diagrama de caja, también conocido como diagrama de caja y bigote, o boxplot en inglés. 
 
 
-```{r, fig.cap="Ejemplo de boxplot con una sola variable (1)", fig.align='center', fig.width=4, fig.height=4}
+
+```r
 boxplot(pr.edad)
 ```
+
+\begin{figure}
+
+{\centering \includegraphics{index_files/figure-latex/unnamed-chunk-15-1} 
+
+}
+
+\caption{Ejemplo de boxplot con una sola variable (1)}\label{fig:unnamed-chunk-15}
+\end{figure}
 <p><br></p>
 
 Ahora es mucho más claro que la mediana de nuestros datos están en torno a los 30 años. Además vemos que algunas parroquias muestran valores raros superiores a los 50 años. Una buena forma de presentar esta información es mezclar este boxplot con los datos brutos.  Veamos lo que podemos hacer.
 
-```{r, fig.cap="Ejemplo de boxplot con una sola variable (1)", fig.align='center', fig.width=4, fig.height=4}
+
+```r
 boxplot(pr.edad)
 stripchart(pr.edad, method = "jitter", jitter = 0.1, add =
 TRUE, vertical = TRUE, pch=19)
 ```
+
+\begin{figure}
+
+{\centering \includegraphics{index_files/figure-latex/unnamed-chunk-16-1} 
+
+}
+
+\caption{Ejemplo de boxplot con una sola variable (1)}\label{fig:unnamed-chunk-16}
+\end{figure}
 <p><br></p>
 
 Bueno que les parece, ¿bonito no?  Aunque hay muchos elementos que incluir aún para que esto pueda llamarse gráfico de verdad.
 
 Otra interesante opción es realizar un histograma con esta variable. El histograma nos muestra la frecuencia de los datos a lo largo de rangos equitativos de la variable.  Al igual que el boxplot nos ayuda ver la distribución de los datos.   
 
-```{r, fig.cap="Ejemplo de histograma", fig.align='center', fig.width=4, fig.height=4}
 
+```r
 hist(pr.edad)
-
 ```
+
+\begin{figure}
+
+{\centering \includegraphics{index_files/figure-latex/unnamed-chunk-17-1} 
+
+}
+
+\caption{Ejemplo de histograma}\label{fig:unnamed-chunk-17}
+\end{figure}
 <p><br></p>
 
 
